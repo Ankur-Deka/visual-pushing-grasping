@@ -11,7 +11,7 @@ class Robot(object):
     def __init__(self, is_sim, obj_mesh_dir, num_obj, workspace_limits,
                  tcp_host_ip, tcp_port, rtc_host_ip, rtc_port,
                  is_testing, test_preset_cases, test_preset_file):
-
+        print('int robot')
         self.is_sim = is_sim
         self.workspace_limits = workspace_limits
 
@@ -178,6 +178,7 @@ class Robot(object):
             if ret_resp == 8:
                 print('Failed to add new objects to simulation. Please restart.')
                 exit()
+            print('lala', ret_ints)
             curr_shape_handle = ret_ints[0]
             self.object_handles.append(curr_shape_handle)
             if not (self.is_testing and self.test_preset_cases):

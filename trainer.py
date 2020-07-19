@@ -62,6 +62,7 @@ class Trainer(object):
 
         # Load pre-trained model
         if load_snapshot:
+            print('snapshot_file', snapshot_file)
             self.model.load_state_dict(torch.load(snapshot_file))
             print('Pre-trained model snapshot loaded from: %s' % (snapshot_file))
 

@@ -298,7 +298,7 @@ def main(args):
             logger.write_to_log('reward-value', trainer.reward_value_log)
 
             # Backpropagate
-            trainer.backprop(prev_color_heightmap, prev_valid_depth_heightmap, prev_primitive_action, prev_best_pix_ind, label_value)
+            # trainer.backprop(prev_color_heightmap, prev_valid_depth_heightmap, prev_primitive_action, prev_best_pix_ind, label_value)
 
             # Adjust exploration probability
             if not is_testing:

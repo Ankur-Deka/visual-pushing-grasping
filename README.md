@@ -42,7 +42,8 @@ Demo videos of a real robot in action can be found [here](http://vpg.cs.princeto
 If you have any questions or find any bugs, please let me know: [Andy Zeng](http://www.cs.princeton.edu/~andyz/) andyz[at]princeton[dot]edu
 
 ## Installation
-
+conda env create -f environment.yml
+<!-- 
 This implementation requires the following dependencies (tested on Ubuntu 16.04.4 LTS): 
 
 * Python 2.7 or Python 3 
@@ -56,8 +57,8 @@ This implementation requires the following dependencies (tested on Ubuntu 16.04.
   ```~~
 * [PyTorch](http://pytorch.org/) version 1.0+ (thanks [Andrew](https://github.com/ahundt) for the support!):
   ```shell
-  pip install torch torchvision
-  ```
+  pip install torch torchvision -->
+  <!-- ``` -->
   <!-- Support for PyTorch version 0.4+ is work-in-progress and lives in [this branch](https://github.com/andyzeng/visual-pushing-grasping/tree/support-pytorch-v0.4), but currently remains unstable. -->
 
 * [V-REP](http://www.coppeliarobotics.com/) (now known as [CoppeliaSim](http://www.coppeliarobotics.com/)) simulation environment
@@ -82,18 +83,16 @@ This demo runs our pre-trained model with a UR5 robot arm in simulation on chall
     ./download-weights.sh
     cd ..
     ```
+`Prototyping.ipynb` has code to convert the models to compatible form.
 
 1. Run V-REP (navigate to your V-REP/CoppeliaSim directory and run `./vrep.sh` or `./coppeliaSim.sh`). From the main menu, select `File` > `Open scene...`, and open the file `visual-pushing-grasping/simulation/simulation.ttt` from this repository.
 
 1. In another terminal window, run the following (simulation will start in the V-REP window). **Please note:** our pre-trained models were trained with PyTorch version 0.3, so this will only run with PyTorch 0.3. Training from scratch (next section) should still work with PyTorch 1.0+.
 
-    ```shell
-    python main.py --is_sim --obj_mesh_dir 'objects/blocks' --num_obj 10 \
-        --push_rewards --experience_replay --explore_rate_decay \
-        --is_testing --test_preset_cases --test_preset_file 'simulation/test-cases/test-10-obj-07.txt' \
-        --load_snapshot --snapshot_file 'downloads/vpg-original-sim-pretrained-10-obj.pth' \
-        --save_visualizations
-    ```
+```shell
+python main.py --is_sim --obj_mesh_dir 'objects/blocks' --num_obj 10 --push_rewards --experience_replay --explore_rate_decay --is_testing --test_preset_cases --test_preset_file 'simulation/test-cases/test-10-obj-07.txt' --load_snapshot --snapshot_file 'downloads/vpg-original-sim-pretrained-10-obj.pth' --save_visualizations
+```
+I commented backprop line in line 301 in main.py
 
 Note: you may get a popup window titled "Dynamics content" in your V-REP window. Select the checkbox and press OK. You will have to do this a total of 3 times before it stops annoying you.
 
